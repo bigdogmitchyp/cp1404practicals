@@ -7,7 +7,8 @@ MENU = """C - Convert Celsius to Fahrenheit\nF - Convert Fahrenheit to Celsius\n
 
 def main():
     """This function will display a menu that converts temperatures"""
-    choice = display_menu()
+    display_menu()
+    choice = collect_user_input()
     check_menu_input(choice)
     print_final_message()
 
@@ -28,7 +29,8 @@ def check_menu_input(choice):
             print_celsius(celsius)
         else:
             print_error()
-        choice = display_menu()
+        display_menu()
+        choice = collect_user_input()
 
 
 def print_error():
@@ -63,6 +65,9 @@ def convert_c_to_f():
 def display_menu():
     """This function prints the menu"""
     print(MENU)
+
+
+def collect_user_input():
     choice = input(">>> ").upper()
     return choice
 
