@@ -20,7 +20,7 @@ def return_random_score():
 
 def return_grade(score):
     """This function will assign a grade to a score"""
-    if 100 < score < 0:
+    if score > 100 or score < 0:
         print_invalid()
     elif score >= 90:
         print_excellent()
