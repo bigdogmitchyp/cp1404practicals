@@ -11,12 +11,19 @@ def main():
 
 
 def print_stars(number_of_stars):
+    """This function prints stars"""
     print(number_of_stars * "*")
 
 
 def get_password():
+    """This function collects users password"""
     user_password = input("password: ")
     number_of_stars = len(user_password)
+    return check_error(number_of_stars)
+
+
+def check_error(number_of_stars):
+    """This function checks that the password is not shorter than eight characters"""
     while number_of_stars < 8:
         print("Invalid password, too short")
         user_password = input("password: ")
