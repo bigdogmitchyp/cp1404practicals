@@ -28,7 +28,7 @@ def check_menu_input(choice):
             print_celsius(celsius)
         else:
             print_error()
-        display_menu()
+        choice = display_menu()
 
 
 def print_error():
