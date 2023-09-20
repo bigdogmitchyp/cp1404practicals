@@ -68,6 +68,7 @@ def display_menu():
 
 
 def collect_user_input():
+    """This function collects the users input"""
     choice = input(">>> ").upper()
     return choice
 
