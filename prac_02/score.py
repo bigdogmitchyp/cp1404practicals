@@ -1,12 +1,21 @@
 """
 CP1404 Week 2 Prac
 """
+import random
 
 
 def main():
     """This function will covert scores into grades"""
     score = collect_user_score()
     return_grade(score)
+    random_score = return_random_score()
+    return_grade(random_score)
+
+
+def return_random_score():
+    """This function generates a random score"""
+    random_score = random.randint(0, 100)
+    return random_score
 
 
 def return_grade(score):
