@@ -36,14 +36,9 @@ almost_numbers = ['0', '10', '21', '3', '-7', '88', '9']
 numbers = [int(string) for string in almost_numbers]
 print(numbers)
 
-big_numbers = []
-for number in numbers:
-    if number > 9:
-        big_numbers.append(number)
+big_numbers = [number for number in numbers if number > 9]
 print(big_numbers)
 
-long_last_names = []
-for name in full_names:
-    if len(name) > 11:
-        long_last_names.append(name.split()[1])
+long_last_names = [name.split()[1] for name in full_names if len(name) > 11]
 print(", ".join(long_last_names))
+
