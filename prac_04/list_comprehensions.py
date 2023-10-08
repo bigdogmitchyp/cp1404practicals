@@ -41,4 +41,3 @@ print(big_numbers)
 
 long_last_names = [name.split()[1] for name in full_names if len(name) > 11]
 print(", ".join(long_last_names))
-
