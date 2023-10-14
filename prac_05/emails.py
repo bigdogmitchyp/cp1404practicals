@@ -6,6 +6,7 @@ Actual: 21 min
 
 
 def main():
+    """Make dictionary of emails and names"""
     email_to_name = {}
     email = input("Email: ")
     while email != "":
@@ -20,6 +21,7 @@ def main():
 
 
 def get_name_from_email(email):
+    """Extract name from emails"""
     start = email.split("@")[0]
     parts = start.split(".")
     name = " ".join(parts).title()
