@@ -19,9 +19,10 @@ while guitar_name != "":
     print(f"{new_guitar.name} ({new_guitar.year}) : {new_guitar.cost:,.2f} added")
     guitar_name = input("Name: ")
 
+print("These are my guitars")
 for i, guitars in enumerate(guitars, 1):
     if guitars.is_vintage():
-        vintage_string ="(vintage)"
+        vintage_string = "(vintage)"
     else:
         vintage_string = ""
     print(f"Guitar {i}: {guitars.name} ({guitars.year}), worth $ {guitars.cost:,.2f}{vintage_string}")
