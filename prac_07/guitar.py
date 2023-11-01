@@ -16,8 +16,14 @@ class Guitar:
     def __str__(self):
         return f"{self.name} ({self.year}) : ${self.cost:,.2f}"
 
+    def __repr__(self):
+        return f"{self.name} ({self.year}) : ${self.cost:,.2f}"
+
     def __lt__(self, other):
         return self.year < other.year
+
+    def __iter__(self):
+        return [self.name, self.year, float(self.cost)]
 
     def get_age(self):
         guitar_age = 2023 - self.year
