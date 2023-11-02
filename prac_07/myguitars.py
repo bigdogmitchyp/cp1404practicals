@@ -4,35 +4,47 @@ CP1404 Practical module
 
 import csv
 from guitar import Guitar
-from operator import itemgetter
 
 
 def main():
-    in_file = open('guitars.csv', 'r', newline='')
-    reader = csv.reader(in_file)
-    guitars = []
-    for row in reader:
-        guitar = Guitar((row[0]), int(row[1]), float(row[2]))
-        guitar = guitar.create_list()
-        guitars.append(guitar)
-    sorted_guitars = (sorted(guitars, key=itemgetter(1)))
-    for guitar in sorted_guitars:
-        print(f"{guitar[0]} ({guitar[1]}) : {guitar[2]:,.2f}")
+    guitars = get_guitars()
+    print_guitars(guitars)
+    get_new_guitar_from_user(guitars)
+    print_guitars(guitars)
+    save_guitars_to_csv(guitars)
+
+
+def save_guitars_to_csv(guitars):
+    with open("guitars.csv", 'w') as file:
+        for guitar in guitars:
+            file.write(f"{guitar.name},{guitar.year},{guitar.cost}\n")
+
+
+def get_new_guitar_from_user(guitars):
     guitar_name = input("New guitar: ")
     while guitar_name != "":
         guitar_year = input("Year: ")
         guitar_cost = input("Price: ")
         guitar = Guitar(guitar_name, int(guitar_year), float(guitar_cost))
-        guitar = guitar.create_list()
         guitars.append(guitar)
-        sorted_guitars = (sorted(guitars, key=itemgetter(1)))
-        for guitar in sorted_guitars:
-            print(f"{guitar[0]} ({guitar[1]}) : {guitar[2]:,.2f}")
+        guitars.sort()
         guitar_name = input("New guitar: ")
-    with open("guitars.csv", 'w+', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows(guitars)
-    in_file.close()
+
+
+def print_guitars(guitars):
+    for guitar in guitars:
+        print(f"{guitar.name} ({guitar.year}) : {guitar.cost:,.2f}")
+
+
+def get_guitars():
+    with open('guitars.csv', 'r', newline='') as file:
+        reader = csv.reader(file)
+        guitars = []
+        for row in reader:
+            guitar = Guitar((row[0]), int(row[1]), float(row[2]))
+            guitars.append(guitar)
+        guitars.sort()
+        return guitars
 
 
 main()

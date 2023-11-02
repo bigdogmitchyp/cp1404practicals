@@ -27,6 +27,3 @@ class Guitar:
 
     def is_vintage(self):
         return self.get_age() >= 50
-
-    def create_list(self):
-        return [self.name, self.year, self.cost]
