@@ -4,10 +4,12 @@ started 2/11 @ 1200
 estimated time 2 days
 """
 
+from project import Project
+
 MENU = ("(L)oad projects\n(S)ave projects\n(D)isplay projects\n(F)ilter projects by date\n"
         "(A)dd new project)\n(U)pdate project\n(Q)uit")
+HEADER = "Name	Start Date	Priority	Cost Estimate	Completion Percentage"
 
-from project import Project
 
 def main():
     print(MENU)
@@ -25,13 +27,17 @@ def main():
                         name.append(row[value])
                     name = " ".join(name)
                     row[0] = name
-                    for value in row:
-                        del row[1:-4]
+                    del row[1:-4]
                     project = Project(row[0], row[1], row[2], row[3], row[4])
                     jobs.append(project)
 
         elif menu_choice == "S":
-            pass
+            project_file = input("Project file name >>> ")
+            with open(project_file, "w") as file:
+                file.writelines(f"{HEADER}\n")
+                for project in jobs:
+                    file.write(f"{project.name} {project.date} {project.priority} {project.cost} {project.completion}\n")
+
         elif menu_choice == "D":
             pass
         elif menu_choice == "F":
@@ -44,5 +50,6 @@ def main():
             print("Invalid menu choice!")
         print(MENU)
         menu_choice = input(">>> ").upper()
+
 
 main()
