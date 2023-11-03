@@ -17,3 +17,9 @@ class Project:
 
     def __repr__(self):
         return f"{self.name}, {self.date}, {self.priority}, {self.cost}, {self.completion}"
+
+    def is_complete(self):
+        return self.completion == 100
+
+    def is_not_complete(self):
+        return self.completion != 100

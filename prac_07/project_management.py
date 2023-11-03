@@ -19,8 +19,7 @@ def main():
             project_file = input("Project file name >>> ")
             with open(project_file, "r") as file:
                 file.readline()
-                jobs = []
-
+                projects = []
                 for row in file:
                     name = []
                     row = row.split()
@@ -29,22 +28,27 @@ def main():
                     name = " ".join(name)
                     row[0] = name
                     del row[1:-4]
-                    project = Project(row[0], row[1], int(row[2]), float(row[3]), int(row[4]))
-                    jobs.append(project)
-                    projects = []
-                for project in jobs:
-                    project = [project.name, project.date, project.priority, project.cost, project.completion]
-                    projects.append(project)
-
+                    projects.append(Project(row[0], row[1], int(row[2]), float(row[3]), int(row[4])))
         elif menu_choice == "S":
             project_file = input("Project file name >>> ")
             with open(project_file, "w") as file:
                 file.writelines(f"{HEADER}\n")
                 for project in projects:
-                    file.write(f"{project[0]} {project[1]} {project[2]} {project[3]} {project[4]}\n")
-
+                    file.write(f"{project.name} {project.date} {project.priority} "
+                               f"{project.cost} {project.completion}\n")
         elif menu_choice == "D":
-            pass
+            projects.sort(key=lambda project: project.priority)
+            print("Incomplete projects:")
+            for project in projects:
+                if project.is_not_complete():
+                    print(f"  {project.name}, start: {project.date}, priority {project.priority}, estimate: "
+                          f"${project.cost}, completion: {project.completion}%")
+            print("Complete projects:")
+            for project in projects:
+                if project.is_complete():
+                    print(f"  {project.name}, start: {project.date}, priority {project.priority}, estimate: "
+                          f"${project.cost}, completion: {project.completion}%")
+            print(project)
         elif menu_choice == "F":
             pass
         elif menu_choice == "A":
