@@ -18,5 +18,11 @@ class Project:
     def __repr__(self):
         return f"{self.name}, {self.date}, {self.priority}, {self.cost}, {self.completion}"
 
+    def __eq__(self, other):
+        return self.completion == other.completion
+
+    def __lt__(self, other):
+        return self.priority > other.priority
+
     def is_complete(self):
-        return self.completion == 100
+        return self.completion >= 100
