@@ -5,6 +5,7 @@ estimated time 2 days
 """
 
 from project import Project
+import datetime
 
 MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n"
         "- (A)dd new project\n- (U)pdate project\n- (Q)uit")
@@ -40,7 +41,7 @@ def main():
             projects.sort(key=lambda project: project.priority)
             print("Incomplete projects:")
             for project in projects:
-                if project.is_not_complete():
+                if not project.is_complete():
                     print(f"  {project.name}, start: {project.date}, priority {project.priority}, estimate: "
                           f"${project.cost}, completion: {project.completion}%")
             print("Complete projects:")
@@ -50,7 +51,14 @@ def main():
                           f"${project.cost}, completion: {project.completion}%")
 
         elif menu_choice == "F":
-            pass
+            date_string = input("Show projects that start after date (d/m/yy): ")
+            date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+            projects.sort(key=lambda project: datetime.datetime.strptime(project.date, "%d/%m/%Y").date())
+            for project in projects:
+                if date <= datetime.datetime.strptime(project.date, "%d/%m/%Y").date():
+                    print(f"{project.name}, start: {project.date}, priority {project.priority}, estimate: "
+                          f"${project.cost}, completion: {project.completion}%")
+
         elif menu_choice == "A":
             print("Let's add a new project")
             project_name = input("Name: ")

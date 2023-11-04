@@ -20,6 +20,3 @@ class Project:
 
     def is_complete(self):
         return self.completion == 100
-
-    def is_not_complete(self):
-        return self.completion != 100
