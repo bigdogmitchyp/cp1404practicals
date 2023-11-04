@@ -52,13 +52,21 @@ def main():
         elif menu_choice == "F":
             pass
         elif menu_choice == "A":
-            pass
+            print("Let's add a new project")
+            project_name = input("Name: ")
+            project_date = input("Start date (dd/mm/yy): ")
+            project_priority = input("Priority: ")
+            project_cost = input("Cost estimate: ")
+            project_completion = input("Percent complete: ")
+            projects.append(Project(project_name, project_date, int(project_priority),
+                                    float(project_cost), int(project_completion)))
         elif menu_choice == "U":
             pass
         else:
             print("Invalid menu choice!")
         print(MENU)
         menu_choice = input(">>> ").upper()
+    print("Thank you for using custom-built project management software")
 
 
 main()
