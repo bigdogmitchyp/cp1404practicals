@@ -6,8 +6,8 @@ estimated time 2 days
 
 from project import Project
 
-MENU = ("(L)oad projects\n(S)ave projects\n(D)isplay projects\n(F)ilter projects by date\n"
-        "(A)dd new project)\n(U)pdate project\n(Q)uit")
+MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n"
+        "- (A)dd new project\n- (U)pdate project\n- (Q)uit")
 HEADER = "Name	Start Date	Priority	Cost Estimate	Completion Percentage"
 
 
@@ -48,7 +48,7 @@ def main():
                 if project.is_complete():
                     print(f"  {project.name}, start: {project.date}, priority {project.priority}, estimate: "
                           f"${project.cost}, completion: {project.completion}%")
-            print(project)
+
         elif menu_choice == "F":
             pass
         elif menu_choice == "A":
@@ -60,8 +60,22 @@ def main():
             project_completion = input("Percent complete: ")
             projects.append(Project(project_name, project_date, int(project_priority),
                                     float(project_cost), int(project_completion)))
+
         elif menu_choice == "U":
-            pass
+            count = -1
+            for project in projects:
+                count += 1
+                print(f"{count} {project.name}, start: {project.date}, priority {project.priority}, estimate: "
+                      f"${project.cost}, completion: {project.completion}%")
+            project_to_update = int(input("Project choice: "))
+            project = projects[project_to_update]
+            print(f"  {project.name}, start: {project.date}, priority {project.priority}, estimate: "
+                  f"${project.cost}, completion: {project.completion}%")
+            completion_to_update = int(input("New Percentage: "))
+            priority_to_update = int(input("New Priority: "))
+            project.completion = completion_to_update
+            project.priority = priority_to_update
+
         else:
             print("Invalid menu choice!")
         print(MENU)
