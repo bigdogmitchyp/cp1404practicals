@@ -4,6 +4,7 @@ CP1404 practical module
 
 
 class Project:
+    """Contains project objects"""
 
     def __init__(self, name="", date="", prio=0, cost=0.0, completion=0):
         self.name = name
@@ -18,8 +19,6 @@ class Project:
     def __repr__(self):
         return f"{self.name}, {self.date}, {self.priority}, {self.cost}, {self.completion}"
 
-    def __lt__(self, other):
-        return self.priority > other.priority
-
     def is_complete(self):
+        """Returns if project is complete"""
         return self.completion >= 100

@@ -2,6 +2,8 @@
 CP1404 prac module
 started 2/11 @ 1200
 estimated time 2 days
+finished 5/11 @ 1200
+total time 3 days
 """
 
 import datetime
@@ -12,6 +14,7 @@ MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter 
 
 
 def main():
+    """Runs projects management module"""
     print(MENU)
     menu_choice = input(">>> ").upper()
     project_file = "projects.txt"
@@ -40,6 +43,7 @@ def main():
 
 
 def get_valid_input(display_message):
+    """Checks that input is not blank"""
     user_input = input(display_message)
     while user_input == "" or user_input.isspace():
         print("Input cannot be blank!")
@@ -48,6 +52,7 @@ def get_valid_input(display_message):
 
 
 def display_projects(projects):
+    """Prints projects in ascending order by priority"""
     projects.sort(key=lambda project: project.priority)
     print("Incomplete projects:")
     for project in projects:
@@ -60,6 +65,7 @@ def display_projects(projects):
 
 
 def update_project_info(projects):
+    """Uses user input to change project completion and priority"""
     count = -1
     for project in projects:
         count += 1
@@ -92,6 +98,7 @@ def update_project_info(projects):
 
 
 def filter_projects_by_date(projects):
+    """Uses user input to filter projects by date after and including a date"""
     date_input = get_valid_date("Show projects that start after date (d/m/yy): ")
     date = datetime.datetime.strptime(date_input, "%d/%m/%Y").date()
     projects.sort(key=lambda project: datetime.datetime.strptime(project.date, "%d/%m/%Y").date())
@@ -101,6 +108,7 @@ def filter_projects_by_date(projects):
 
 
 def get_valid_date(display_message):
+    """Checks if date is valid"""
     is_input_valid = False
     while not is_input_valid:
         try:
@@ -113,6 +121,7 @@ def get_valid_date(display_message):
 
 
 def add_project(projects):
+    """Uses user input to add a new project to the list"""
     print("Let's add a new project")
     project_name = get_valid_input("Name: ")
     date_input = get_valid_date("Start date (dd/mm/yy): ")
@@ -124,16 +133,19 @@ def add_project(projects):
 
 
 def print_project_without_indent(project):
+    """Prints projects with f string formatting"""
     print(f"{project.name}, start: {project.date}, priority {project.priority}, estimate: "
           f"${project.cost}, completion: {project.completion}%")
 
 
 def print_project_with_indent(project):
+    """Prints projects with f string formatting"""
     print(f"  {project.name}, start: {project.date}, priority {project.priority}, estimate: "
           f"${project.cost}, completion: {project.completion}%")
 
 
 def save_projects(project_file, projects):
+    """Writes project info to file"""
     with open(project_file, "w", encoding="utf-8") as file:
         file.writelines("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
         for project in projects:
@@ -142,6 +154,7 @@ def save_projects(project_file, projects):
 
 
 def load_projects(project_file):
+    """Loads project info from file"""
     is_valid_input = False
     while not is_valid_input:
         try:
