@@ -1,6 +1,6 @@
 # Practical 07
 
-This is Mitchell's practical repository. I enjoy coding and chilling out.
+This is Mitchell's practical repository. I enjoy coding, chilling out, and counterstrike.
 
 ## Coding Lessons
 
