@@ -7,6 +7,7 @@ from guitar import Guitar
 
 
 def main():
+    """Guitar list program"""
     guitars = get_guitars()
     print_guitars(guitars)
     get_new_guitar_from_user(guitars)
@@ -15,12 +16,14 @@ def main():
 
 
 def save_guitars_to_csv(guitars):
-    with open("guitars.csv", 'w') as file:
+    """Saves changes made to list to csv file"""
+    with open("guitars.csv", 'w', encoding="utf-8") as file:
         for guitar in guitars:
             file.write(f"{guitar.name},{guitar.year},{guitar.cost}\n")
 
 
 def get_new_guitar_from_user(guitars):
+    """Takes user input for adding new guitars to list"""
     guitar_name = input("New guitar: ")
     while guitar_name != "":
         guitar_year = input("Year: ")
@@ -32,12 +35,14 @@ def get_new_guitar_from_user(guitars):
 
 
 def print_guitars(guitars):
+    """Prints guitar info with formatting"""
     for guitar in guitars:
         print(f"{guitar.name} ({guitar.year}) : {guitar.cost:,.2f}")
 
 
 def get_guitars():
-    with open('guitars.csv', 'r', newline='') as file:
+    """Loads guitar info from a csv file"""
+    with open('guitars.csv', 'r', newline='', encoding="utf-8") as file:
         reader = csv.reader(file)
         guitars = []
         for row in reader:
