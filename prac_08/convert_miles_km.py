@@ -21,8 +21,9 @@ class MilesKiloConvertApp(App):
         result = float(value) * MILES_TO_KM
         self.root.ids.output_number.text = str(result)
 
-    def handle_increment(self, number, diff):
-        self.root.ids.input_number.text = number + diff
+    def handle_increment(self, text, diff):
+        new_miles = float(text) + float(diff)
+        self.root.ids.input_number.text = str(new_miles)
 
 
 MilesKiloConvertApp().run()
