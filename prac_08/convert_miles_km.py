@@ -5,11 +5,14 @@ CP1404 Prac
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.core.window import Window
+from kivy.properties import StringProperty
 
 MILES_TO_KM = 1.60934
 
 
 class MilesKiloConvertApp(App):
+    output_text = StringProperty()
+
     def build(self):
         """ build the Kivy app from the kv file """
         Window.size = (450, 300)
@@ -19,7 +22,7 @@ class MilesKiloConvertApp(App):
 
     def handle_miles(self, text):
         result = self.check_number(text) * MILES_TO_KM
-        self.root.ids.output_number.text = str(result)
+        self.output_text = str(result)
 
     def handle_increment(self, text, diff):
         new_miles = self.check_number(text) + float(diff)
