@@ -14,6 +14,7 @@ print(MENU)
 
 
 def main():
+    """Taxi simulator"""
     current_taxi = None
     bill_to_date = 0
     user_choice = input(">>> ").upper()
@@ -34,6 +35,7 @@ def main():
 
 
 def print_taxi_list():
+    """Prints list of taxis"""
     running_count = 0
     for taxi in TAXIS:
         print(f"{running_count} - {taxi}")
@@ -41,6 +43,7 @@ def print_taxi_list():
 
 
 def drive_taxi(taxi):
+    """Drives current taxi for input distance"""
     if taxi:
         try:
             trip_distance = int(input("Drive how far? "))
@@ -54,6 +57,7 @@ def drive_taxi(taxi):
 
 
 def choose_taxi():
+    """Select taxi from list of taxis"""
     print("Taxis available:")
     print_taxi_list()
     try:
